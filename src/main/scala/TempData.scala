@@ -62,6 +62,12 @@ object TempData{
     val rainyTemps = data.flatMap(td => if(td.precip <1.0) Seq.empty else Seq(td.tmax))
     println(s"Average Rainy temp is ${rainyTemps.sum/rainyTemps.length}")
 
+    val monthGroup = data.groupBy(_.month)
+    val monthlyTemp = monthGroup.map {
+      case (m, days) =>
+        m -> days.foldLeft(0.0)((sum, td) => sum + td.tmax) / days.length
+    }
+    monthlyTemp.toSeq.sortBy(_._1) foreach println
 
 
 

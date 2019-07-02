@@ -4,7 +4,7 @@
 		module="someproject_2.11"
 		revision="0.1"
 		status="integration"
-		publication="20190626105256"
+		publication="20190702125955"
 	>
 		<description>
 		someproject
@@ -35,5 +35,6 @@
 		<dependency org="org.apache.spark" name="spark-core_2.11" rev="2.3.1" conf="compile->default(compile)"/>
 		<dependency org="org.apache.spark" name="spark-sql_2.11" rev="2.3.1" conf="compile->default(compile)"/>
 		<dependency org="org.apache.spark" name="spark-mllib_2.11" rev="2.3.1" conf="runtime->default(compile)"/>
+		<dependency org="org.vegas-viz" name="vegas_2.11" rev="0.3.11" conf="compile->default(compile)"/>
 	</dependencies>
 </ivy-module>

@@ -1,5 +1,6 @@
 import org.apache.spark.sql.SparkSession
 
+
 object ClassScala  {
 
    def main(args: Array[String]): Unit={
