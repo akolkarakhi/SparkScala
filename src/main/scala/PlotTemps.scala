@@ -6,7 +6,7 @@ import scalafx.scene.Scene
 import scalafx.scene.chart.{NumberAxis, ScatterChart, XYChart}
 import scalafx.scene.control.Label
 import scalafx.scene.layout.BorderPane
-import swiftvis2.plotting.Plot
+import swiftvis2.plotting.{ColorGradient, Plot}
 import swiftvis2.plotting
 import swiftvis2.plotting.renderer.FXRenderer
 
@@ -21,9 +21,15 @@ object PlotTemps extends JFXApp{
   }.toArray
 
   source.close()
-  val plot = Plot.scatterPlot(data.map(_.doy),data.map(_.tmax),"Temps","Days of Year","Temps")
+  val rainData = data.filter(_.precip >=0.0).sortBy(_.precip)
+  val cg = ColorGradient((0.0,0xFF000000),(1.0,0xFF00FF00),(10.0,0xFF0000FF))
+  val plot = Plot.scatterPlot(rainData.map(_.doy),rainData.map(_.tmax),"Temps","Days of Year"
+    ,"Temps",5 ,rainData.map(td => cg(td.precip)))
+
   FXRenderer(plot,500,500)
- /* stage = new JFXApp.PrimaryStage {
+
+
+  /* stage = new JFXApp.PrimaryStage {
     title = "Temp Plot"
     scene = new Scene(500,500){
       val xAxis = NumberAxis()
